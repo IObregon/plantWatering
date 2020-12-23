@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-
+	"time"
 	"github.com/stianeikeland/go-rpio"
 )
 
@@ -23,5 +23,6 @@ func main() {
 	for true {
 		res := pin.Read()
 		fmt.Println(res)
+		time.Sleep(5 * time.Second)
 	}
 }
