@@ -47,7 +47,7 @@ func main() {
 		v1.GET("/readings", GetReadings)
 	}
 
-	r.Run(":8080")
+	r.Run(":7777")
 }
 
 func PostReading(c *gin.Context) {
