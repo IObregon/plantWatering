@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	pin       = rpio.Pin(21)
-	relay_pin = rpio.Pin(20)
+	pin      = rpio.Pin(21)
+	relayPin = rpio.Pin(20)
 )
 
 func main() {
@@ -21,14 +21,15 @@ func main() {
 	defer rpio.Close()
 
 	pin.Input()
+	relayPin.Output()
 
 	for true {
 		readResult := pin.Read()
-		fmt.Println(readResult)
+		fmt.Println(time.Now().String(), ": ", readResult)
 		if readResult != 1 {
-			relay_pin.High()
-			time.Sleep(3 * time.Second)
-			relay_pin.Low()
+			relayPin.High()
+			time.Sleep(10 * time.Second)
+			relayPin.Low()
 		}
 		time.Sleep(5 * time.Second)
 	}
