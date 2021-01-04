@@ -15,7 +15,7 @@ var (
 )
 
 func main() {
-	f, err := os.OpenFile("text.log",
+	f, err := os.OpenFile("/home/pi/repositories/plantWatering/text.log",
 		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Println(err)
