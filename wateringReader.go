@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -14,6 +15,13 @@ var (
 )
 
 func main() {
+	f, err := os.OpenFile("text.log",
+		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Println(err)
+	}
+	defer f.Close()
+
 	if err := rpio.Open(); err != nil {
 		os.Exit(1)
 	}
@@ -25,12 +33,13 @@ func main() {
 
 	for true {
 		readResult := pin.Read()
-		fmt.Println(time.Now().String(), ": ", readResult)
+		f.WriteString(fmt.Sprint(time.Now().String(), ": ", readResult, "\n"))
+
 		if readResult != 1 {
 			relayPin.High()
 			time.Sleep(10 * time.Second)
 			relayPin.Low()
 		}
-		time.Sleep(60 * time.Minute)
+		time.Sleep(6 * time.Second)
 	}
 }
