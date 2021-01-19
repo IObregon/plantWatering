@@ -39,6 +39,7 @@ func main() {
 			relayPin.High()
 			time.Sleep(5 * time.Second)
 			relayPin.Low()
+			time.Sleep(120 * time.Minute)
 		}
 		time.Sleep(60 * time.Minute)
 	}
