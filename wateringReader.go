@@ -35,9 +35,9 @@ func main() {
 		readResult := pin.Read()
 		f.WriteString(fmt.Sprint(time.Now().String(), ": ", readResult, "\n"))
 
-		if readResult != 1 {
+		if readResult == 1 {
 			relayPin.High()
-			time.Sleep(10 * time.Second)
+			time.Sleep(5 * time.Second)
 			relayPin.Low()
 		}
 		time.Sleep(60 * time.Minute)
